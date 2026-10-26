@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Science Lab Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-mark">DS</div>
+      <div>
+        <b>DATA SCIENCE</b>
+        <small>LAB PORTAL</small>
+      </div>
+    </div>
+
+    <nav>
+      <button class="nav-item active" data-view="dashboard">
+        ⌂ <span>Dashboard</span>
+      </button>
+
+      <button class="nav-item" data-view="lab">
+        ▣ <span>Lab Programs</span>
+      </button>
+
+      <button class="nav-item" data-view="modules">
+        ▤ <span>Modules / Syllabus</span>
+      </button>
+
+      <button class="nav-item" data-view="profile">
+        ◉ <span>My Profile</span>
+      </button>
+
+      <button class="nav-item" data-view="settings">
+        ⚙ <span>Settings</span>
+      </button>
+    </nav>
+
+    <div class="side-bottom">
+
+      <div class="mini-profile" id="sideProfile">
+        <div class="avatar" id="sideAvatar">DS</div>
+
+        <div>
+          <b>D. Sravani</b>
+          <small>Data Science</small>
+        </div>
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">
+        ↪ Logout
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+
+      <div>
+        <p class="eyebrow">DATA SCIENCE • PRACTICAL RECORD</p>
+        <h1 id="pageTitle">Dashboard</h1>
+      </div>
+
+      <button class="top-profile" id="topProfile">
+
+        <div class="avatar" id="topAvatar">
+          DS
+        </div>
+
+        <div>
+          <b>D. Sravani</b>
+          <small>5th Semester</small>
+        </div>
+
+      </button>
+
+    </header>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section id="dashboard" class="view active-view">
+
+      <div class="hero">
+
+        <div>
+
+          <span class="pill">
+            WELCOME BACK
+          </span>
+
+          <h2>
+            Your Data Science<br>
+            <span>Practical Workspace</span>
+          </h2>
+
+          <p>
+            All 7 programs, sub-programs, code, outputs and
+            study records in one place.
+          </p>
+
+          <button class="primary" data-go="lab">
+            Open Lab Programs →
+          </button>
+
+        </div>
+
+        <div class="hero-art">
+
+          <div class="orb">
+            DS
+          </div>
+
+          <div class="chart-bars">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- STATISTICS -->
+
+      <div class="stats">
+
+        <div class="stat">
+          <span>PROGRAMS</span>
+          <strong>7</strong>
+          <small>Complete practical list</small>
+        </div>
+
+        <div class="stat">
+          <span>SUB-PROGRAMS</span>
+          <strong id="subCount">0</strong>
+          <small>Across all 7 programs</small>
+        </div>
+
+        <div class="stat">
+          <span>EDITABLE</span>
+          <strong>YES</strong>
+          <small>Code can be edited and saved</small>
+        </div>
+
+        <div class="stat">
+          <span>STORAGE</span>
+          <strong>LOCAL</strong>
+          <small>Your edits stay in this browser</small>
+        </div>
+
+      </div>
+
+
+      <div class="section-head">
+
+        <div>
+          <p class="eyebrow">QUICK ACCESS</p>
+          <h3>Seven Practical Programs</h3>
+        </div>
+
+      </div>
+
+      <div class="program-grid" id="dashboardPrograms"></div>
+
+    </section>
+
+
+
+    <!-- ================= LAB ================= -->
+
+    <section id="lab" class="view">
+
+      <div class="section-head">
+
+        <div>
+          <p class="eyebrow">LAB WORKSPACE</p>
+
+          <h2>All 7 Programs</h2>
+
+          <p>
+            Choose a program, then open any sub-program.
+          </p>
+        </div>
+
+        <input
+          class="search"
+          id="searchInput"
+          placeholder="Search programs or sub-programs..."
+        >
+
+      </div>
+
+      <div class="program-list" id="programList"></div>
+
+    </section>
+
+
+
+    <!-- ================= MODULES ================= -->
+
+    <section id="modules" class="view">
+
+      <div class="section-head">
+
+        <div>
+          <p class="eyebrow">ACADEMIC MATERIAL</p>
+
+          <h2>Modules / Syllabus</h2>
+
+          <p>
+            Add your college PPT/PDF files here.
+          </p>
+        </div>
+
+        <label class="primary file-label">
+
+          + Add File
+
+          <input
+            type="file"
+            id="moduleFileInput"
+            accept=".pdf,.ppt,.pptx"
+            hidden
+          >
+
+        </label>
+
+      </div>
+
+      <div class="file-grid" id="moduleFiles"></div>
+
+    </section>
+
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <section id="profile" class="view">
+
+      <div class="profile-card">
+
+        <div class="profile-cover"></div>
+
+        <div class="profile-body">
+
+          <div class="profile-avatar-wrap">
+
+            <img
+              id="profileAvatar"
+              class="profile-avatar"
+              alt="Profile photo"
+            >
+
+            <label class="change-photo">
+
+              Change Photo
+
+              <input
+                type="file"
+                id="photoInput"
+                accept="image/*"
+                hidden
+              >
+
+            </label>
+
+          </div>
+
+
+          <div class="profile-info">
+
+            <button class="primary profile-edit-trigger" id="editProfileBtn" type="button">✎ Edit Profile</button>
+
+            <p class="eyebrow">
+              STUDENT PROFILE
+            </p>
+
+            <h2>D. Sravani</h2>
+
+            <p class="muted">
+              Data Science • MBU
+            </p>
+
+
+            <div class="details-grid">
+
+              <div>
+                <span>Name</span>
+                <b>D. Sravani</b>
+              </div>
+
+              <div>
+                <span>Roll No</span>
+                <b>24102A030018</b>
+              </div>
+
+              <div>
+                <span>Course</span>
+                <b>Data Science</b>
+              </div>
+
+              <div>
+                <span>profesor</span>
+                <b>S.Bosu Babu</b>
+              </div>
+
+              <div>
+                <span>Semester</span>
+                <b>5th Semester</b>
+              </div>
+
+              <div>
+                <span>Year</span>
+                <b>3rd Year</b>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= SETTINGS ================= -->
+
+    <section id="settings" class="view">
+
+      <div class="settings-card">
+
+        <p class="eyebrow">
+          PREFERENCES
+        </p>
+
+        <h2>Settings</h2>
+
+
+        <label class="setting-row">
+
+          <span>
+            <b>Dark interface</b>
+
+            <small>
+              Use the portal's dark workspace theme.
+            </small>
+          </span>
+
+          <input
+            type="checkbox"
+            id="themeToggle"
+            checked
+          >
+
+        </label>
+
+
+        <button class="danger" id="clearSaved">
+          Clear saved code and module files
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ================= PROGRAM MODAL ================= -->
+
+  <div class="modal" id="programModal">
+
+    <div class="modal-box large">
+
+      <button class="close" id="closeModal">
+        ×
+      </button>
+
+
+      <div class="modal-top">
+
+        <div>
+
+          <p class="eyebrow" id="modalProgramNo"></p>
+
+          <h2 id="modalProgramTitle"></h2>
+
+          <p
+            id="modalProgramDesc"
+            class="muted"
+          ></p>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+          <button id="copyCode">
+            Copy Code
+          </button>
+          <button id="runCode" class="primary">▶ Run Python</button>
+
+          <button id="resetCode">
+            Reset
+          </button>
+
+          <button
+            class="primary"
+            id="saveCode"
+          >
+            Save Code
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- SUB PROGRAMS -->
+
+      <div
+        class="subtabs"
+        id="subTabs"
+      ></div>
+
+
+      <div class="detail-grid">
+
+
+        <!-- LEFT -->
+
+        <div>
+
+          <div class="info-card">
+
+            <h3>Overview</h3>
+
+            <p id="detailOverview"></p>
+
+          </div>
+
+
+          <div class="info-card">
+
+            <h3>Program Image</h3>
+
+            <img id="programImage" class="program-image" src="images/experiment-1.svg" alt="Pandas Data Handling experiment illustration">
+            <p class="image-caption" id="imageCaption">Visual guide for this experiment</p>
+
+          </div>
+
+
+          <div class="info-card">
+
+            <h3>YouTube Video</h3>
+
+            <input id="youtubeUrl" class="youtube-input" type="url" placeholder="Paste YouTube video URL">
+            <button id="saveYoutube" class="small-action" type="button">Save video link</button>
+            <a
+              id="youtubeLink"
+              class="video-link"
+              target="_blank"
+              rel="noopener"
+            >
+              Open related YouTube video ↗
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div>
+
+          <div class="code-card">
+
+            <div class="code-head">
+
+              <h3>
+                Source Code
+              </h3>
+
+              <span>
+                Editable
+              </span>
+
+            </div>
+
+
+            <textarea
+              id="codeEditor"
+              spellcheck="false"
+            ></textarea>
+
+          </div>
+
+
+          <div class="info-card output-card">
+
+            <h3>
+              Output / Result
+            </h3>
+
+            <pre id="detailOutput">Output will appear here when you run the Python code.</pre>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="pdf-viewer-modal" id="pdfViewerModal" aria-hidden="true">
+    <div class="pdf-viewer-panel" role="dialog" aria-modal="true" aria-labelledby="pdfViewerTitle">
+      <div class="pdf-viewer-toolbar">
+        <div class="pdf-viewer-heading">
+          <strong id="pdfViewerTitle">PDF Viewer</strong>
+          <small id="pdfViewerFilename"></small>
+        </div>
+        <div class="pdf-viewer-actions">
+          <a id="pdfViewerDownload" class="small-action" download>Download PDF</a>
+          <button type="button" class="small-action" id="closePdfViewer">✕ Close</button>
+        </div>
+      </div>
+      <iframe id="pdfViewerFrame" title="Module PDF viewer" src="about:blank"></iframe>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- EDIT PROFILE MODAL -->
+  <div class="modal" id="profileEditModal" aria-hidden="true">
+    <div class="modal-box profile-edit-box" role="dialog" aria-modal="true" aria-labelledby="profileEditTitle">
+      <div class="modal-top"><div><p class="eyebrow">PERSONAL DETAILS</p><h2 id="profileEditTitle">Edit Profile</h2></div><button class="close" id="closeProfileEdit" type="button" aria-label="Close">×</button></div>
+      <form id="profileEditForm" class="profile-edit-form">
+        <label>Full Name<input name="name" required value="D. Sravani"></label>
+        <label>Roll Number<input name="roll" value="24102A030018"></label>
+        <label>Branch / Course<input name="course" value="Data Science"></label>
+        <label>Professor Name<input name="professor" value="S. Bosu Babu"></label>
+        <label>Section<input name="section" value="5th Semester"></label>
+        <label>Email<input name="email" type="email" value=""></label>
+        <div class="modal-actions"><button type="button" class="small-action" id="cancelProfileEdit">Cancel</button><button type="submit" class="primary">Save Changes</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
